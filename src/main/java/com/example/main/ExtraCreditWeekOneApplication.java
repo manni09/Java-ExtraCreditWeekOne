@@ -12,6 +12,8 @@ import com.example.model.Role;
 import com.example.model.Status;
 import com.example.model.Task;
 import com.example.model.User;
+import com.example.service.IVolunteerService;
+import com.example.service.VolunteerService;
 
 public class ExtraCreditWeekOneApplication {
 
@@ -24,7 +26,7 @@ public class ExtraCreditWeekOneApplication {
 	public static void populateData() {
 
 		Project project1 = new Project();
-		Project project2 = new Project();
+		//Project project2 = new Project();
 
 		project1.setName("GTZ Action Aid");
 		project1.setDescription("Help Poor and Needy People by Providing Food, Cloth and Shoes");
@@ -69,6 +71,26 @@ public class ExtraCreditWeekOneApplication {
 		volunteers.add(volunteer1);
 		
 		task1.setVolunteers(volunteers);
+		List<Task> tasks = new ArrayList<>();
+		tasks.add(task1);
+		
+		project1.setTasks(tasks);
+		
+		IVolunteerService volunteerService = new VolunteerService();
+		
+		volunteerService.createProject(project1);
+		
+	}
+	
+	public static void readProject(){
+		IVolunteerService volunteerService = new VolunteerService();
+		List<Project> projects = volunteerService.getProjectByKeyword("GTZ");
+		
+		for(Project project : projects){
+			System.out.println(String.format("%1$10s %2$10s %3$10s %4$10s", project.getName(), project.getDescription(), project.getStart_date().toString(), project.getStatus().toString()));
+		}
+		
+		
 		
 	}
 
