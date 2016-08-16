@@ -1,22 +1,24 @@
 package com.example.model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Project {
+public class User {
 	@Id
 	@GeneratedValue
 	private int id;
+	private String first_name;
+	private String last_name;
 
-	private String description;
-	private Date start_date;
-	private Date end_date;
-	private Status status;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	List<Task> tasks;
+
 }
