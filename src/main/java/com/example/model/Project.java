@@ -37,7 +37,7 @@ public class Project {
 	@OneToOne
 	private Address address;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "project")
 	@ElementCollection
 	private List<Task> tasks;
 	
