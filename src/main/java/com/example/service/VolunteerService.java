@@ -10,6 +10,11 @@ import com.example.dao.ProjectDAO;
 public class VolunteerService implements IVolunteerService {
 
 	private ProjectDAO projectDAO;
+	
+	public VolunteerService() {
+		// TODO Auto-generated constructor stub
+		projectDAO = new ProjectDAO();
+	}
 
 	@Override
 	public void createProject(Project project) {

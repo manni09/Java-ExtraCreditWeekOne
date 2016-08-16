@@ -1,7 +1,5 @@
 package com.example.main;
 
-import static org.assertj.core.api.Assertions.setRemoveAssertJRelatedElementsFromStackTrace;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +18,7 @@ public class ExtraCreditWeekOneApplication {
 	public static void main(String[] args) {
 
 		populateData();
+		readProject();
 
 	}
 

@@ -42,7 +42,7 @@ public class Project {
 	private List<Task> tasks;
 	
 	@Lob
-	@Column(table = "Additional")
+	@Column(table = "Additional",nullable = true)
 	private byte[] image;
 
 	@Id
