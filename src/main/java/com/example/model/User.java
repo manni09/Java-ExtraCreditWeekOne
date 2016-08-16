@@ -20,7 +20,7 @@ public class User {
 	private String last_name;
 	
 	@OneToOne
-	private Address address;
+	private Address uAddress;
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -44,7 +44,7 @@ public class User {
 	}
 
 	public Address getAddress() {
-		return address;
+		return uAddress;
 	}
 
 	public Role getRole() {
@@ -68,7 +68,7 @@ public class User {
 	}
 
 	public void setAddress(Address address) {
-		this.address = address;
+		this.uAddress = address;
 	}
 
 	public void setRole(Role role) {
