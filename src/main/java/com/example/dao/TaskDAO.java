@@ -8,15 +8,16 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.example.model.Project;
+import com.example.model.Task;
 import com.example.model.User;
 
 public class TaskDAO {
 	@SuppressWarnings("unchecked")
-	public List<Project> getTaskByProject(Project project) throws Exception {
+	public List<Task> getTaskByProject(Project project) throws Exception {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
-		List<Project> projects = new ArrayList<>();
+		List<Task> tasks = new ArrayList<>();
 
 		try {
 
@@ -24,7 +25,7 @@ public class TaskDAO {
 			Query query = session.createQuery("FROM Task t join t.project p WHERE p.id = :id");
 			query.setParameter("id", project.getId());
 
-			projects = query.list();
+			tasks = query.list();
 
 			tx.commit();
 
@@ -36,16 +37,16 @@ public class TaskDAO {
 			throw new Exception(e);
 		}
 
-		return projects;
+		return tasks;
 
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Project> getTaskByVolunteer(User volunteer) throws Exception {
+	public List<Task> getTaskByVolunteer(User volunteer) throws Exception {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
-		List<Project> projects = new ArrayList<>();
+		List<Task> tasks = new ArrayList<>();
 
 		try {
 
@@ -53,7 +54,7 @@ public class TaskDAO {
 			Query query = session.createQuery("FROM Task t join t.volunteers v WHERE v.id = :id order by t.start_date");
 			query.setParameter("id", volunteer.getId());
 
-			projects = query.list();
+			tasks = query.list();
 
 			tx.commit();
 
@@ -65,7 +66,7 @@ public class TaskDAO {
 			throw new Exception(e);
 		}
 
-		return projects;
+		return tasks;
 
 	}
 }
