@@ -16,7 +16,7 @@ public class Task {
 	private Date end_date;
 	private Status status;
 	private String resource;
-	private String beneficiaries;
+	private List<String> beneficiaries;
 	
 	List<User> volunteers;
 }
