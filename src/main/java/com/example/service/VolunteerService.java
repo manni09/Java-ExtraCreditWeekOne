@@ -10,11 +10,11 @@ public class VolunteerService implements IVolunteerService {
 	private ProjectDAO projectDAO;
 
 	@Override
-	public void createMovie(Project project) {
+	public void createProject(Project project) {
 		// TODO Auto-generated method stub
 		try {
 
-			projectDAO.save(project);
+			projectDAO.createProject(project);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -25,7 +25,7 @@ public class VolunteerService implements IVolunteerService {
 	public List<Project> getAll() {
 		try {
 
-			List<Project> projectList = (List<Project>) projectDAO.findAll();
+			List<Project> projectList = (List<Project>) projectDAO.getAllProject();
 			return projectList;
 
 		} catch (Exception e) {

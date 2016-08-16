@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.model.*;
 
 public interface IVolunteerService {
-	void createMovie(Project project);
+	void createProject(Project project);
 
 	List<Project> getAll();
 }
