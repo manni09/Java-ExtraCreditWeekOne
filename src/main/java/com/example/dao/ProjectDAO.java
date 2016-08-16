@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.example.model.Address;
 import com.example.model.Project;
 import com.example.model.Status;
+import com.example.model.User;
 
 public class ProjectDAO {
 	public void createProject(Project project) throws Exception {
@@ -198,6 +199,34 @@ public class ProjectDAO {
 			tx = session.beginTransaction();
 			Query query = session.createQuery("FROM Project p where p.status = :status");
 			query.setParameter("status", status.toString());
+
+			projects = query.list();
+
+			tx.commit();
+
+		} catch (Exception e) {
+
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			throw new Exception(e);
+		}
+
+		return projects;
+
+	}
+	
+	public List<Project> getProjectByVolunteer(User volunteer) throws Exception {
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx = null;
+		List<Project> projects = new ArrayList<>();
+
+		try {
+
+			tx = session.beginTransaction();
+			Query query = session.createQuery("FROM Project p join p.tasks t join t.volunteers WHERE v.id = :id order by t.start_date");
+			query.setParameter("id", volunteer.getId());
 
 			projects = query.list();
 
